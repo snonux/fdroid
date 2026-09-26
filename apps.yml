@@ -1,0 +1,20 @@
+# Apps published in this F-Droid repository.
+#
+# Each entry pulls the signed APKs attached to the newest GitHub releases of
+# `github`, plus the fastlane store text and screenshots at that release's tag.
+# The APKs are published exactly as released: F-Droid clients verify the app's
+# own signature, this repo only signs the index.
+#
+#   id:        the app's applicationId (must match the APKs)
+#   github:    owner/repo whose releases carry the APKs
+#   assets:    regex matched against release asset names
+#   fastlane:  path of the fastlane metadata dir in the app repo (optional)
+#   keep:      how many releases to keep available (default: keep_releases)
+
+keep_releases: 2
+
+apps:
+  - id: org.buetow.quicklog
+    github: snonux/quicklog
+    assets: '^app-.*-release\.apk$'
+    fastlane: fastlane/metadata/android
