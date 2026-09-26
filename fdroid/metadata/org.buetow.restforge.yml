@@ -1,0 +1,14 @@
+# Store text, icon, screenshots and changelogs come from the app repo's
+# flutter/fastlane/ dir, synced into metadata/org.buetow.restforge/ by
+# scripts/sync_apps.py.
+Categories:
+  - Development
+  - Internet
+License: MIT
+AuthorName: Paul Buetow
+AuthorWebSite: https://foo.zone
+SourceCode: https://github.com/snonux/restforge
+IssueTracker: https://github.com/snonux/restforge/issues
+Changelog: https://github.com/snonux/restforge/releases
+
+AutoName: RESTForge

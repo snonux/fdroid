@@ -18,3 +18,13 @@ apps:
     github: snonux/quicklog
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
+
+  - id: org.snonux.comicredr
+    github: snonux/comicredr
+    assets: '^comicredr-.*\.apk$'
+    fastlane: fastlane/metadata/android
+
+  - id: org.buetow.restforge
+    github: snonux/restforge
+    assets: '^restforge-.*\.apk$'
+    fastlane: flutter/fastlane/metadata/android

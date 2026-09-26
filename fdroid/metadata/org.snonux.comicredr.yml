@@ -1,0 +1,12 @@
+# Store text, icon, screenshots and changelogs come from the app repo's
+# fastlane/ dir, synced into metadata/org.snonux.comicredr/ by scripts/sync_apps.py.
+Categories:
+  - Reading
+License: Apache-2.0
+AuthorName: Paul Buetow
+AuthorWebSite: https://foo.zone
+SourceCode: https://github.com/snonux/comicredr
+IssueTracker: https://github.com/snonux/comicredr/issues
+Changelog: https://github.com/snonux/comicredr/blob/main/CHANGELOG.md
+
+AutoName: ComicRedr

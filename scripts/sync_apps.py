@@ -16,7 +16,6 @@ import json
 import os
 import re
 import shutil
-import sys
 import tarfile
 import urllib.request
 from pathlib import Path
@@ -115,8 +114,11 @@ def main():
         print(f"{app['id']} <- {app['github']}")
         releases = wanted_releases(app, int(app.get("keep", default_keep)))
         if not releases:
-            sys.exit(f"error: no release of {app['github']} has assets "
-                     f"matching {app['assets']!r}")
+            # A newly listed app before its first release with APKs: skip it
+            # rather than hold back every other app's update.
+            print(f"  warning: no release of {app['github']} has assets "
+                  f"matching {app['assets']!r}; skipping")
+            continue
         print(f"  releases: {', '.join(tag for tag, _ in releases)}")
         wanted |= sync_apks(app, releases)
         if app.get("fastlane"):
