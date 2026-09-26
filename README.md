@@ -33,7 +33,8 @@ APKs are published from the GitHub releases of these projects:
 - [RESTForge](https://github.com/snonux/restforge)
 - [ComicRedr](https://github.com/snonux/comicredr)
 
-They are listed in [`apps.yml`](apps.yml). To add one:
+This list may be incomplete: the repo can carry more apps than are mentioned
+here. [`apps.yml`](apps.yml) is the full list. To add one:
 
 1. Make its release process attach signed APKs to a GitHub release.
 2. Add an entry to `apps.yml` (id, GitHub repo, asset regex, fastlane path).
