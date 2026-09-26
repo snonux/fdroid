@@ -12,10 +12,18 @@ from here can be updated from any other source that ships the same signed APKs
 
 ## Add the repo on a phone
 
-Open <https://snonux.github.io/fdroid/repo> on the phone and tap the link or
-scan the QR code, or in the F-Droid app go to *Settings → Repositories → +*
-and enter the address with its fingerprint (shown on that page and in the
-workflow log).
+**[➕ Add to F-Droid](https://fdroid.link/#https://snonux.github.io/fdroid/repo?fingerprint=04B05FB0565543E058372B867B3D3A699D9D668388CE670478EDD4116D736DF7)**
+(tap on the phone), or scan this with the phone's camera:
+
+<img src="add-repo-qr.png" alt="QR code to add the repo to F-Droid" width="200">
+
+To add it by hand, go to *Settings → Repositories → +* in the F-Droid app:
+
+- Address: `https://snonux.github.io/fdroid/repo`
+- Fingerprint: `04B05FB0565543E058372B867B3D3A699D9D668388CE670478EDD4116D736DF7`
+
+The fingerprint belongs to the repo signing key. If that key is ever replaced,
+update the link, the QR code (`add-repo-qr.png`) and the fingerprint here.
 
 ## Apps
 
