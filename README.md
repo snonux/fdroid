@@ -44,6 +44,10 @@ here. [`apps.yml`](apps.yml) is the full list. To add one:
    Name, summary, description, icon, screenshots and changelogs come from the
    app repo's fastlane directory at the release tag.
 
+For a Flutter app, [docs/onboarding-flutter-app.md](docs/onboarding-flutter-app.md)
+walks through all of it, including a release workflow template, signing and
+the store listing.
+
 The workflow runs on every push, every six hours, on demand
 (`gh workflow run publish.yml -R snonux/fdroid`) and on a `repository_dispatch`
 of type `app-release`, so a new release shows up in F-Droid within six hours
