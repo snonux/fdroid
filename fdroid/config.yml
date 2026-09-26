@@ -1,6 +1,7 @@
 # fdroidserver config for this binary-only repo. Secrets come from the
 # environment (GitHub Actions secrets), never from this file.
 repo_url: https://snonux.github.io/fdroid/repo
+repo_icon: repo-icon.png
 repo_name: snonux F-Droid
 repo_description: >-
   Paul Buetow's own Android apps, published straight from their GitHub

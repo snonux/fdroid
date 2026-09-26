@@ -1,3 +1,5 @@
+<p align="center"><img src="logo.svg" width="160" alt="snonux F-Droid logo"></p>
+
 # snonux F-Droid repository
 
 A personal [F-Droid](https://f-droid.org) repository for my own Android apps,
@@ -87,3 +89,9 @@ cd fdroid && FDROID_KEYSTORE_PASS=... fdroid update
 ```
 
 `apksigner` must be on `PATH` or under `$ANDROID_HOME/build-tools`.
+
+## Logo
+
+`logo.svg` is the source. `fdroid/repo-icon.png` is its 512 px render used as
+the repo icon in the F-Droid app (`repo_icon` in `fdroid/config.yml`); after
+changing the SVG, re-render it, e.g. `cairosvg logo.svg -o fdroid/repo-icon.png -W 512 -H 512`.

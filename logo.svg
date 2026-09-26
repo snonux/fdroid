@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-labelledby="t">
+  <title id="t">snonux F-Droid repository</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1f7a5c"/>
+      <stop offset="1" stop-color="#0e3b4f"/>
+    </linearGradient>
+    <linearGradient id="lid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#d9efe6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- tile -->
+  <rect x="16" y="16" width="480" height="480" rx="108" fill="url(#bg)"/>
+
+  <!-- antennas -->
+  <g stroke="#8fe3bf" stroke-width="14" stroke-linecap="round">
+    <line x1="196" y1="132" x2="170" y2="92"/>
+    <line x1="316" y1="132" x2="342" y2="92"/>
+  </g>
+  <circle cx="170" cy="92" r="12" fill="#8fe3bf"/>
+  <circle cx="342" cy="92" r="12" fill="#8fe3bf"/>
+
+  <!-- head: an open package with eyes -->
+  <path d="M128 176 Q128 132 172 132 H340 Q384 132 384 176 V196 H128 Z" fill="url(#lid)"/>
+  <circle cx="206" cy="166" r="14" fill="#0e3b4f"/>
+  <circle cx="306" cy="166" r="14" fill="#0e3b4f"/>
+
+  <!-- box body -->
+  <path d="M112 212 H400 V372 Q400 412 360 412 H152 Q112 412 112 372 Z" fill="#ffffff" fill-opacity="0.95"/>
+
+  <!-- download arrow into the box -->
+  <g fill="none" stroke="#1f7a5c" stroke-width="26" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="256" y1="244" x2="256" y2="352"/>
+    <polyline points="208,308 256,356 304,308"/>
+  </g>
+
+  <!-- "s" monogram tag -->
+  <circle cx="392" cy="396" r="56" fill="#f2b84b" stroke="#0e3b4f" stroke-width="10"/>
+  <text x="392" y="418" text-anchor="middle" font-family="DejaVu Sans, Verdana, Arial, sans-serif" font-weight="700" font-size="66" fill="#0e3b4f">s</text>
+</svg>
