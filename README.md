@@ -27,7 +27,13 @@ update the link, the QR code (`add-repo-qr.png`) and the fingerprint here.
 
 ## Apps
 
-Listed in [`apps.yml`](apps.yml). To add one:
+APKs are published from the GitHub releases of these projects:
+
+- [Quicklog](https://github.com/snonux/quicklog)
+- [RESTForge](https://github.com/snonux/restforge)
+- [ComicRedr](https://github.com/snonux/comicredr)
+
+They are listed in [`apps.yml`](apps.yml). To add one:
 
 1. Make its release process attach signed APKs to a GitHub release.
 2. Add an entry to `apps.yml` (id, GitHub repo, asset regex, fastlane path).
