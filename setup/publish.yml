@@ -1,0 +1,92 @@
+name: Publish F-Droid repo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  # App repos can trigger a refresh right after a release:
+  #   gh api repos/snonux/fdroid/dispatches -f event_type=app-release
+  repository_dispatch:
+    types: [app-release]
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install fdroidserver and apksigner
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q apksigner
+          pip install fdroidserver==2.4.5
+
+      # Keeps downloaded APKs and fdroidserver's apkcache (which remembers when
+      # each version was first added) between runs.
+      - name: Restore APK cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            fdroid/repo/*.apk
+            fdroid/tmp
+          key: fdroid-apks-${{ github.run_id }}
+          restore-keys: fdroid-apks-
+
+      - name: Fetch APKs and store metadata from app releases
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/sync_apps.py
+
+      - name: Restore repo signing key
+        env:
+          FDROID_KEYSTORE: ${{ secrets.FDROID_KEYSTORE }}
+        run: |
+          if [ -z "$FDROID_KEYSTORE" ]; then
+            echo "::error::The FDROID_KEYSTORE secret is not set; see README.md"
+            exit 1
+          fi
+          echo "$FDROID_KEYSTORE" | base64 -d > fdroid/keystore.p12
+          chmod 600 fdroid/keystore.p12 fdroid/config.yml
+
+      - name: Build and sign the index
+        working-directory: fdroid
+        env:
+          FDROID_KEYSTORE_PASS: ${{ secrets.FDROID_KEYSTORE_PASS }}
+        run: fdroid update --pretty
+
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp -r fdroid/repo _site/repo
+          cp site/index.html _site/index.html
+          rm -f fdroid/keystore.p12
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}repo/
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
