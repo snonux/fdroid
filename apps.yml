@@ -28,3 +28,8 @@ apps:
     github: snonux/restforge
     assets: '^restforge-.*\.apk$'
     fastlane: flutter/fastlane/metadata/android
+
+  - id: zone.foo.player_android
+    github: snonux/player
+    assets: '^player-v[0-9]+\.[0-9]+\.[0-9]+-(armeabi-v7a|arm64-v8a|x86_64)\.apk$'
+    fastlane: player-android/fastlane/metadata/android

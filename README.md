@@ -34,6 +34,7 @@ APKs are published from the GitHub releases of these projects:
 - [Quicklog](https://github.com/snonux/quicklog)
 - [RESTForge](https://github.com/snonux/restforge)
 - [ComicRedr](https://github.com/snonux/comicredr)
+- [Player](https://github.com/snonux/player)
 
 This list may be incomplete: the repo can carry more apps than are mentioned
 here. [`apps.yml`](apps.yml) is the full list. To add one:
