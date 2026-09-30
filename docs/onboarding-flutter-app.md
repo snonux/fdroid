@@ -1,24 +1,34 @@
 # Onboarding a Flutter app
 
-How to publish another of Paul's Android Dart/Flutter apps through this
-repository, the way Quicklog, ComicRedr and RESTForge are published. Written
-for Paul and for coding agents: follow it step by step and the app ends up
-like the others.
+How to publish another of Paul's Android Flutter apps through this
+repository, the same way as Quicklog, ComicRedr, RESTForge and Player. Written
+for Paul and for coding agents.
 
-The model: **nothing is built in this repo.** The app repo builds and signs
-its own APKs and attaches them to a GitHub release. `scripts/sync_apps.py`
-here downloads them together with the app's fastlane store text at the same
-tag, and `fdroid update` signs the index. So onboarding is mostly work in the
-app repo, plus two small files here.
+**Nothing is built in this repo.** The app repo builds and signs its own APKs
+and attaches them to a GitHub release. This repo only downloads them and
+publishes them. So most of the work happens in the app repo.
+
+## Overview
+
+| Step | Where | Who |
+| --- | --- | --- |
+| [1. Look at the app](#1-look-at-the-app-first) | app repo | agent |
+| [2. Pick the version-code scheme](#2-pick-the-version-code-scheme) | app repo | agent |
+| [3. Signing key](#3-the-signing-key) | Paul's machine | Paul (or agent with his OK) |
+| [4. Release workflow](#4-the-release-workflow) | app repo | agent |
+| [5. Store listing](#5-store-listing-fastlane) | app repo | agent |
+| [6. Enable workflow, set secrets, first release](#6-hand-over-to-paul) | app repo | Paul |
+| [7. Register the app](#7-register-the-app-here) | this repo | agent |
+| [8. Check it](#8-check-it) | phone | Paul |
 
 ## What an agent can and cannot do
 
 - An agent's GitHub token cannot write under `.github/workflows/`. Put the
-  release workflow at `ci/workflows/release.yml` in the app repo and give
-  Paul the command to move it (step 6).
-- Signing keys and repository secrets need Paul's machine. An agent never
-  creates, overwrites or commits a key, and never prints a password. It asks
-  before creating a new key.
+  release workflow at `ci/workflows/release.yml` in the app repo; Paul moves
+  it (step 6).
+- Signing keys and secrets live on Paul's machine. An agent never overwrites
+  or commits a key, never prints a password, and only creates a new key
+  after Paul says yes.
 - Give Paul shell commands in **fish** syntax.
 
 ## 1. Look at the app first
@@ -29,7 +39,7 @@ In the app repo, find:
 - **Where the Flutter project lives**: the directory with `pubspec.yaml`
   (the repo root, or e.g. `flutter/` in a monorepo). Called `APP_DIR` below.
 - **Release signing**: whether `android/app/build.gradle.kts` reads
-  `android/key.properties`. All three existing apps do, and fall back to the
+  `android/key.properties`. Quicklog, ComicRedr and RESTForge do, and fall back to the
   debug key without it. If the app has no such block, add the standard one
   (see Quicklog's `android/app/build.gradle.kts`).
 - **An existing release key**: `android/key.properties` on Paul's machine, and
@@ -61,14 +71,14 @@ the installed app, and a lost key means users must uninstall and reinstall.
 - **A key exists**: use it as it is.
 - **No key exists** (typical: all builds so far were debug-signed): with
   Paul's OK, create one outside the repo, e.g.
-  ```sh
+  ```fish
   mkdir -p ~/.config/<app>
-  pw=$(openssl rand -hex 16)
+  set pw (openssl rand -hex 16)
   keytool -genkeypair -noprompt -keystore ~/.config/<app>/release.jks -storetype PKCS12 \
     -alias <app> -keyalg RSA -keysize 4096 -validity 36500 \
-    -dname "CN=<App name>" -storepass "$pw" -keypass "$pw"
+    -dname "CN=<App name>" -storepass $pw -keypass $pw
   printf 'storeFile=%s\nstorePassword=%s\nkeyAlias=<app>\nkeyPassword=%s\n' \
-    ~/.config/<app>/release.jks "$pw" "$pw" > <APP_DIR>/android/key.properties
+    ~/.config/<app>/release.jks $pw $pw > <APP_DIR>/android/key.properties
   chmod 600 ~/.config/<app>/release.jks <APP_DIR>/android/key.properties
   ```
   A debug-signed copy on the phone then has to be uninstalled once (it loses
@@ -143,7 +153,7 @@ at once instead of within six hours.
 
 Then the first release: bump `version:` in `pubspec.yaml` (semver and the
 `+N` build number), write the changelog, commit, `git tag vX.Y.Z; and git
-push; and git push --tags`, and `gh run watch`.
+push; and git push --tags`, then `gh run watch` to follow the build.
 
 ## 7. Register the app here
 
