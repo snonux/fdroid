@@ -19,6 +19,11 @@ apps:
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
 
+  - id: org.buetow.quicknote
+    github: snonux/quicknote
+    assets: '^app-.*-release\.apk$'
+    fastlane: fastlane/metadata/android
+
   - id: org.snonux.comicredr
     github: snonux/comicredr
     assets: '^comicredr-.*\.apk$'
