@@ -1,7 +1,7 @@
 # Onboarding a Flutter app
 
 How to publish another of Paul's Android Flutter apps through this
-repository, the same way as Quicklog, Quicknote, ComicRedr, RESTForge and
+repository, the same way as Quicklog, TurboNotes, ComicRedr, RESTForge and
 Player. Written for Paul and for coding agents.
 
 **Nothing is built in this repo.** The app repo builds and signs its own APKs

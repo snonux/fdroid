@@ -1,0 +1,12 @@
+# Store text, icon, screenshots and changelogs come from the app repo's
+# fastlane/ dir, synced into metadata/org.buetow.turbonotes/ by scripts/sync_apps.py.
+Categories:
+  - Writing
+License: MIT
+AuthorName: Paul Buetow
+AuthorWebSite: https://foo.zone
+SourceCode: https://github.com/snonux/turbonotes
+IssueTracker: https://github.com/snonux/turbonotes/issues
+Changelog: https://github.com/snonux/turbonotes/releases
+
+AutoName: TurboNotes
