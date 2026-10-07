@@ -25,6 +25,7 @@ when a new version is released.
 ## Apps
 
 - [Quicklog](https://github.com/snonux/quicklog)
+- [Quicknote](https://github.com/snonux/quicknote)
 - [RESTForge](https://github.com/snonux/restforge)
 - [ComicRedr](https://github.com/snonux/comicredr)
 - [Player](https://github.com/snonux/player)
