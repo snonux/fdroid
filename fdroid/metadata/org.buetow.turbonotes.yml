@@ -1,5 +1,5 @@
 # Store text, icon, screenshots and changelogs come from the app repo's
-# fastlane/ dir, synced into metadata/org.buetow.quicknote/ by scripts/sync_apps.py.
+# fastlane/ dir, synced into metadata/org.buetow.turbonotes/ by scripts/sync_apps.py.
 Categories:
   - Writing
 License: MIT
@@ -9,4 +9,4 @@ SourceCode: https://github.com/snonux/quicknote
 IssueTracker: https://github.com/snonux/quicknote/issues
 Changelog: https://github.com/snonux/quicknote/releases
 
-AutoName: Quicknote
+AutoName: TurboNotes

@@ -19,7 +19,7 @@ apps:
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
 
-  - id: org.buetow.quicknote
+  - id: org.buetow.turbonotes
     github: snonux/quicknote
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
