@@ -29,6 +29,7 @@ when a new version is released.
 - [RESTForge](https://github.com/snonux/restforge)
 - [ComicRedr](https://github.com/snonux/comicredr)
 - [Player](https://github.com/snonux/player)
+- [TurboLaunch](https://github.com/snonux/turbolaunch)
 
 More apps may be available than are listed here; [`apps.yml`](apps.yml) is
 the complete list.
