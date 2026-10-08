@@ -20,10 +20,7 @@ apps:
     fastlane: fastlane/metadata/android
 
   - id: org.buetow.turbonotes
-    # Still the old repository name: it works now, and keeps working once the
-    # repository is renamed to snonux/turbonotes, because GitHub redirects the
-    # old name. Switch to snonux/turbonotes after the rename.
-    github: snonux/quicknote
+    github: snonux/turbonotes
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
 
