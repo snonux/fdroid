@@ -119,3 +119,8 @@ as the repository icon in F-Droid. After changing the SVG, re-render it:
 ```fish
 cairosvg logo.svg -o fdroid/repo-icon.png -W 512 -H 512
 ```
+
+## License
+
+The scripts, workflow and docs in this repository are MIT licensed; see
+[LICENSE](LICENSE). The apps it serves keep their own licenses.

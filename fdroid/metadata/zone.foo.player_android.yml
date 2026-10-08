@@ -1,7 +1,7 @@
 # Store listing comes from player-android/fastlane/ at the release tag.
 Categories:
   - Multimedia
-License: Unknown
+License: MIT
 AuthorName: Paul Buetow
 AuthorWebSite: https://github.com/snonux/player
 SourceCode: https://github.com/snonux/player
