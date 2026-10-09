@@ -17,6 +17,7 @@ import os
 import re
 import shutil
 import tarfile
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -112,7 +113,15 @@ def main():
     wanted = set()
     for app in config["apps"]:
         print(f"{app['id']} <- {app['github']}")
-        releases = wanted_releases(app, int(app.get("keep", default_keep)))
+        try:
+            releases = wanted_releases(app, int(app.get("keep", default_keep)))
+        except urllib.error.HTTPError as err:
+            # A repo this token cannot read (private, renamed, deleted): keep
+            # what is already published for the app and update the others.
+            print(f"::warning::{app['github']}: releases not readable "
+                  f"(HTTP {err.code}); keeping its published APKs")
+            wanted |= {apk.name for apk in REPO_DIR.glob(f"{app['id']}_*.apk")}
+            continue
         if not releases:
             # A newly listed app before its first release with APKs: skip it
             # rather than hold back every other app's update.
