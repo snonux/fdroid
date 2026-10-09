@@ -1,0 +1,11 @@
+# Store listing comes from filebrowser-android/fastlane/ at the release tag.
+Categories:
+  - System
+License: Apache-2.0
+AuthorName: Paul Buetow
+AuthorWebSite: https://github.com/snonux/filebrowser
+SourceCode: https://github.com/snonux/filebrowser
+IssueTracker: https://github.com/snonux/filebrowser/issues
+Changelog: https://github.com/snonux/filebrowser/releases
+
+AutoName: File Browser

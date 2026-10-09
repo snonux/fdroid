@@ -31,6 +31,7 @@ when a new version is released.
 - [Player](https://github.com/snonux/player)
 - [TurboLaunch](https://github.com/snonux/turbolaunch)
 - [Gunrunners](https://github.com/snonux/gunrunners)
+- [File Browser](https://github.com/snonux/filebrowser) (in `filebrowser-android/`)
 
 These are all the apps in the repository; [`apps.yml`](apps.yml) is the list
 the publish workflow reads.
