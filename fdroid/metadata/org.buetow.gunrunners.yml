@@ -1,0 +1,12 @@
+# Store text, icon, screenshots and changelogs come from the app repo's
+# fastlane/ dir, synced into metadata/org.buetow.gunrunners/ by scripts/sync_apps.py.
+Categories:
+  - Games
+License: GPL-2.0-or-later
+AuthorName: Paul Buetow
+AuthorWebSite: https://foo.zone
+SourceCode: https://github.com/snonux/gunrunners
+IssueTracker: https://github.com/snonux/gunrunners/issues
+Changelog: https://github.com/snonux/gunrunners/releases
+
+AutoName: Gunrunners

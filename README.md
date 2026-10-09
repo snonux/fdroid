@@ -30,6 +30,7 @@ when a new version is released.
 - [ComicRedr](https://github.com/snonux/comicredr)
 - [Player](https://github.com/snonux/player)
 - [TurboLaunch](https://github.com/snonux/turbolaunch)
+- [Gunrunners](https://github.com/snonux/gunrunners)
 
 More apps may be available than are listed here; [`apps.yml`](apps.yml) is
 the complete list.

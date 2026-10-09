@@ -43,3 +43,8 @@ apps:
     github: snonux/turbolaunch
     assets: '^app-.*-release\.apk$'
     fastlane: fastlane/metadata/android
+
+  - id: org.buetow.gunrunners
+    github: snonux/gunrunners
+    assets: '^gunrunners-v[0-9]+\.[0-9]+\.[0-9]+\.apk$'
+    fastlane: fastlane/metadata/android
