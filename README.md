@@ -32,8 +32,8 @@ when a new version is released.
 - [TurboLaunch](https://github.com/snonux/turbolaunch)
 - [Gunrunners](https://github.com/snonux/gunrunners)
 
-More apps may be available than are listed here; [`apps.yml`](apps.yml) is
-the complete list.
+These are all the apps in the repository; [`apps.yml`](apps.yml) is the list
+the publish workflow reads.
 
 ## How it works
 
