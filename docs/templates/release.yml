@@ -49,6 +49,8 @@ jobs:
     steps:
       # Runs before the checkout, which needs the tag to exist. See
       # docs/releasing-apps.md in snonux/fdroid, "Auto release tagging".
+      # The step's shell has no pipefail, so a failed fetch leaves version
+      # empty; without the check for that, tag=v would create a junk tag.
       - name: Create the tag if it does not exist yet
         if: github.event_name == 'workflow_dispatch'
         working-directory: .
@@ -61,6 +63,7 @@ jobs:
           pubspec="${APP_DIR#./}/pubspec.yaml"; pubspec="${pubspec#./}"
           version=$(gh api "repos/$GITHUB_REPOSITORY/contents/$pubspec?ref=$GITHUB_SHA" \
             -H 'Accept: application/vnd.github.raw' | sed -n 's/^version: *\([^+]*\).*/\1/p')
+          [ -n "$version" ] || { echo "::error::Could not read the version from $pubspec at $GITHUB_SHA"; exit 1; }
           if [ "v$version" != "$TAG" ]; then
             echo "::error::Tag $TAG does not match version $version in $pubspec"; exit 1
           fi
