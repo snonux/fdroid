@@ -13,6 +13,9 @@ before starting it.
 - **Adding an app**: [docs/onboarding-flutter-app.md](docs/onboarding-flutter-app.md).
   Covers the app repo's release workflow ([docs/templates/release.yml](docs/templates/release.yml)),
   signing, fastlane store text, and the `apps.yml` and `fdroid/metadata/` entries here.
+- **Releasing a new version of an app**: [docs/releasing-apps.md](docs/releasing-apps.md).
+  The release pipeline, each app's version file and tag, and how an agent
+  releases without pushing a tag (the release workflow creates it).
 - **Checking versions, tagging a missing release, verifying the published
   index, keeping the README's app list complete**:
   [docs/release-check.md](docs/release-check.md). It starts with pulling this
@@ -29,5 +32,6 @@ Short form; the reasons are in [docs/agent-rules.md](docs/agent-rules.md).
 - **Keys**: never commit, print or regenerate a signing key (this repo's
   index key or an app's release key).
 - **Releases**: only tag a version that is already in an app's code; never
-  bump a version to have something to tag.
+  bump a version to have something to tag. An agent cannot push tags; it
+  starts the app's release workflow with the new tag instead.
 - Give Paul shell commands in fish syntax.

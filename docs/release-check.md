@@ -80,8 +80,19 @@ git -C ~/git/<repo> tag vX.Y.Z <sha>
 git -C ~/git/<repo> push origin vX.Y.Z
 ```
 
-Pushing the tag is the release: every app repo's `release.yml` builds the
-signed APKs for a pushed `v*` tag and attaches them to the GitHub release. It
+An agent cannot push tags. When the version bump is the head of
+`origin/main`, it starts the release workflow instead, which creates the tag
+on that head ([Auto release tagging](releasing-apps.md#auto-release-tagging)):
+
+```fish
+gh workflow run release.yml -R snonux/<repo> --ref main -f tag=vX.Y.Z
+```
+
+If commits that should not ship came after the bump, the workflow cannot
+tag the older commit; ask Paul to tag `<sha>` by hand.
+
+Creating the tag is the release: every app repo's `release.yml` builds the
+signed APKs for a new `v*` tag and attaches them to the GitHub release. It
 cannot be taken back cleanly once phones have seen the version, so only tag a
 version that is already in the code; never bump a version just to have
 something to tag.

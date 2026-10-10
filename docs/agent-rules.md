@@ -29,7 +29,10 @@ commands and does not run them with real key material.
 
 ## Releases
 
-Pushing a `vX.Y.Z` tag to an app repo publishes that version to phones. Only
+Pushing a `vX.Y.Z` tag to an app repo publishes that version to phones.
+An agent's git proxy refuses tag pushes, so an agent releases by starting
+the app's release workflow with the new tag, which creates it
+([releasing-apps.md](releasing-apps.md#auto-release-tagging)). Only
 tag a version that is already in the app's code, as described in
 [release-check.md](release-check.md); bumping a version is Paul's decision.
 
