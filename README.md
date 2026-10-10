@@ -41,7 +41,8 @@ the publish workflow reads.
 Nothing is built in this repository.
 
 1. Each app repo builds and signs its own APKs and attaches them to a GitHub
-   release when a `vX.Y.Z` tag is pushed.
+   release for each new `vX.Y.Z` tag, pushed by hand or created by the
+   app's release workflow ([docs/releasing-apps.md](docs/releasing-apps.md)).
 2. The [publish workflow](.github/workflows/publish.yml) here downloads the
    newest two releases of every app in `apps.yml`, together with each app's
    store text and screenshots (fastlane metadata) at that tag

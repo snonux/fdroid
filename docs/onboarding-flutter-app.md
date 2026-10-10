@@ -1,8 +1,10 @@
 # Onboarding a Flutter app
 
 How to publish another of Paul's Android Flutter apps through this
-repository, the same way as Quicklog, TurboNotes, ComicRedr, RESTForge and
-Player. Written for Paul and for coding agents.
+repository, the same way as Quicklog, TurboNotes, TurboLaunch, ComicRedr,
+RESTForge, Player and File Browser. Written for Paul and for coding agents.
+Releasing an app that is already onboarded is covered in
+[releasing-apps.md](releasing-apps.md).
 
 **Nothing is built in this repo.** The app repo builds and signs its own APKs
 and attaches them to a GitHub release. This repo only downloads them and
@@ -26,6 +28,9 @@ publishes them. So most of the work happens in the app repo.
 - An agent's GitHub token cannot write under `.github/workflows/`. Put the
   release workflow at `ci/workflows/release.yml` in the app repo; Paul moves
   it (step 6).
+- An agent cannot push tags (its git proxy answers HTTP 403), but it can
+  start workflows. So the release workflow creates a missing tag itself when
+  started by hand; see [Auto release tagging](releasing-apps.md#auto-release-tagging).
 - Signing keys and secrets live on Paul's machine. An agent never overwrites
   or commits a key, never prints a password, and only creates a new key
   after Paul says yes.
@@ -92,15 +97,23 @@ the installed app, and a lost key means users must uninstall and reinstall.
 Copy [`templates/release.yml`](templates/release.yml) to
 `ci/workflows/release.yml` in the app repo and fill in `APP_NAME`,
 `APP_DIR` and `FLUTTER_VERSION` (or add a `.flutter-version` file to
-`APP_DIR`). On a `vX.Y.Z` tag it:
+`APP_DIR`). On a pushed `vX.Y.Z` tag, or a manual run with `tag=vX.Y.Z`, it:
 
-1. checks the tag against `version:` in `pubspec.yaml`,
-2. restores the key from secrets into `android/key.properties`,
-3. runs `flutter build apk --release --split-per-abi`,
-4. fails if an APK is debug-signed,
-5. uploads `<APP_NAME>-vX.Y.Z-<abi>.apk` to the release (creating it with
+1. on a manual run for a tag that does not exist yet, creates the tag at
+   the head of the branch the run started on, once `pubspec.yaml` there has
+   that version ([Auto release tagging](releasing-apps.md#auto-release-tagging)),
+2. checks the tag against `version:` in `pubspec.yaml`,
+3. restores the key from secrets into `android/key.properties`,
+4. runs `flutter build apk --release --split-per-abi`,
+5. fails if an APK is debug-signed,
+6. uploads `<APP_NAME>-vX.Y.Z-<abi>.apk` to the release (creating it with
    generated notes if Paul has not written one),
-6. pings this repo when `FDROID_DISPATCH_TOKEN` is set.
+7. pings this repo when `FDROID_DISPATCH_TOKEN` is set.
+
+Keep the tag step when adapting the workflow: it is what lets an agent
+release the app. If the app's tags are not plain `vX.Y.Z` (File Browser uses
+`android-vX.Y.Z` because its server owns `vX.Y.Z`), change the `v` prefix in
+both version checks.
 
 Adapt the build step if the app keeps a single APK (ComicRedr runs its
 `make apk`) or needs a reproducible build for official F-Droid (Quicklog
@@ -126,7 +139,10 @@ writes three), so for the Flutter default scheme `default.txt`, rewritten
 before each tag, is simpler (RESTForge does this).
 
 Document the release steps in the app's README or AGENTS.md: bump the
-version, write the changelog, tag, push, and the secrets list.
+version, write the changelog, push, then tag (or start the Release workflow
+with the new tag), and the secrets list. Link
+[releasing-apps.md](https://github.com/snonux/fdroid/blob/main/docs/releasing-apps.md)
+rather than repeating it.
 
 ## 6. Hand over to Paul
 
@@ -152,8 +168,11 @@ that has *Contents: read and write* on snonux/fdroid, so a release shows up
 at once instead of within six hours.
 
 Then the first release: bump `version:` in `pubspec.yaml` (semver and the
-`+N` build number), write the changelog, commit, `git tag vX.Y.Z; and git
-push; and git push --tags`, then `gh run watch` to follow the build.
+`+N` build number), write the changelog, commit and push, then either
+`git tag vX.Y.Z; and git push origin vX.Y.Z` or
+`gh workflow run release.yml --ref main -f tag=vX.Y.Z` (which an agent can
+do too), and `gh run watch` to follow the build. Also add the app to the
+table in [releasing-apps.md](releasing-apps.md#the-apps).
 
 ## 7. Register the app here
 
