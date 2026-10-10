@@ -34,6 +34,7 @@ phones have seen the version. Only tag a version that is already in the code
 | Quicklog | snonux/quicklog | `pubspec.yaml` | `vX.Y.Z` | `release.yml`, reproducible build for official F-Droid |
 | TurboNotes | snonux/turbonotes | `pubspec.yaml` | `vX.Y.Z` | `release.yml` |
 | TurboLaunch | snonux/turbolaunch | `pubspec.yaml` | `vX.Y.Z` | `release.yml` |
+| TurboMon | snonux/turbomon | `pubspec.yaml` | `vX.Y.Z` | `release.yml` |
 | ComicRedr | snonux/comicredr | `pubspec.yaml` | `vX.Y.Z` | `release.yml` |
 | RESTForge | snonux/restforge | `flutter/pubspec.yaml` | `vX.Y.Z` | `release.yml` |
 | Player | snonux/player | `player-android/pubspec.yaml` | `vX.Y.Z` | `release.yml` |

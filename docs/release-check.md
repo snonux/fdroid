@@ -17,7 +17,7 @@ every later step then gives a wrong answer.
 
 ```fish
 git -C ~/git/fdroid pull --ff-only
-for r in quicklog turbonotes comicredr restforge player turbolaunch gunrunners
+for r in quicklog turbonotes comicredr restforge player turbolaunch turbomon gunrunners
     git -C ~/git/$r fetch --quiet --tags --prune origin
     git -C ~/git/$r pull --quiet --ff-only; or echo "$r: not fast-forwarded (dirty, diverged or on a feature branch)"
 end
@@ -38,7 +38,7 @@ Where each app keeps its version:
 
 | App repo | Version lives in |
 |---|---|
-| quicklog, turbonotes, comicredr, turbolaunch | `pubspec.yaml` (`version: X.Y.Z+N`) |
+| quicklog, turbonotes, comicredr, turbolaunch, turbomon | `pubspec.yaml` (`version: X.Y.Z+N`) |
 | restforge | `flutter/pubspec.yaml` |
 | player | `player-android/pubspec.yaml` |
 | gunrunners | `CMakeLists.txt` (`project(Gunrunners VERSION X.Y.Z ...)`) |
@@ -51,7 +51,7 @@ checkout can be dirty or on a feature branch, and a repo's default branch is
 not always `main` (gunrunners' is a leftover `claude/...` branch).
 
 ```fish
-for r in quicklog turbonotes comicredr restforge player turbolaunch gunrunners
+for r in quicklog turbonotes comicredr restforge player turbolaunch turbomon gunrunners
     set tag (git -C ~/git/$r tag --sort=-v:refname | head -1)
     set code (git -C ~/git/$r grep -hE '^version:|^project\(.* VERSION ' origin/main -- \
         pubspec.yaml flutter/pubspec.yaml player-android/pubspec.yaml CMakeLists.txt)

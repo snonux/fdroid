@@ -1,0 +1,13 @@
+# Store text, icon, screenshots and changelogs come from the app repo's
+# fastlane/ dir, synced into metadata/org.buetow.turbomon/ by scripts/sync_apps.py.
+Categories:
+  - System
+  - Connectivity
+License: MIT
+AuthorName: Paul Buetow
+AuthorWebSite: https://foo.zone
+SourceCode: https://github.com/snonux/turbomon
+IssueTracker: https://github.com/snonux/turbomon/issues
+Changelog: https://github.com/snonux/turbomon/releases
+
+AutoName: TurboMon

@@ -30,6 +30,7 @@ when a new version is released.
 - [ComicRedr](https://github.com/snonux/comicredr)
 - [Player](https://github.com/snonux/player)
 - [TurboLaunch](https://github.com/snonux/turbolaunch)
+- [TurboMon](https://github.com/snonux/turbomon)
 - [Gunrunners](https://github.com/snonux/gunrunners)
 - [File Browser](https://github.com/snonux/filebrowser) (in `filebrowser-android/`)
 
