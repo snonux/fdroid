@@ -17,20 +17,20 @@ every later step then gives a wrong answer.
 
 ```fish
 git -C ~/git/fdroid pull --ff-only
-for r in quicklog turbonotes comicredr restforge player turbolaunch turbomon gunrunners
+set repos (grep -oP '^\s+github: snonux/\K\S+' ~/git/fdroid/apps.yml)
+for r in $repos
     git -C ~/git/$r fetch --quiet --tags --prune origin
     git -C ~/git/$r pull --quiet --ff-only; or echo "$r: not fast-forwarded (dirty, diverged or on a feature branch)"
 end
 ```
 
-The repo names in the loop are the `github:` values in the freshly pulled
-`apps.yml`; add any app that is new there (clone it to `~/git/<repo>` if it is
-not checked out yet).
+The repo names come from the `github:` values in the freshly pulled `apps.yml`.
+Clone an app to `~/git/<repo>` first if it is not checked out yet.
 
 An app checkout that cannot be fast-forwarded is not a problem and not to be
 "fixed": it holds Paul's uncommitted work or a feature branch. The `fetch`
-has still updated `origin/main` and the tags, which is all the steps below
-read.
+has still updated the remote release branch and tags, which is all the steps
+below read.
 
 ## 1. Compare the version in code with the newest tag
 
@@ -42,21 +42,40 @@ Where each app keeps its version:
 | restforge | `flutter/pubspec.yaml` |
 | player | `player-android/pubspec.yaml` |
 | gunrunners | `CMakeLists.txt` (`project(Gunrunners VERSION X.Y.Z ...)`) |
+| filebrowser | `filebrowser-android/pubspec.yaml` |
 
 For a Flutter app the pubspec sits next to the `fastlane:` dir named in
 `apps.yml`. Add a row here when onboarding an app that keeps it elsewhere.
 
-Always read `origin/main`, not the working tree and not `origin/HEAD`: a
-checkout can be dirty or on a feature branch, and a repo's default branch is
-not always `main` (gunrunners' is a leftover `claude/...` branch).
+Always read the canonical release branch, not the working tree and not
+`origin/HEAD`: a checkout can be dirty or on a feature branch, and a repo's
+default branch can be stale. All apps use `origin/main` except File Browser,
+which uses `origin/master`. File Browser also shares its repo with a server,
+so only its `android-vX.Y.Z` tags belong to the Android app.
 
 ```fish
 for r in quicklog turbonotes comicredr restforge player turbolaunch turbomon gunrunners
     set tag (git -C ~/git/$r tag --sort=-v:refname | head -1)
     set code (git -C ~/git/$r grep -hE '^version:|^project\(.* VERSION ' origin/main -- \
         pubspec.yaml flutter/pubspec.yaml player-android/pubspec.yaml CMakeLists.txt)
-    echo "$r: tag $tag, "(git -C ~/git/$r rev-list --count $tag..origin/main)" commits since; code: $code"
+    set commits (git -C ~/git/$r rev-list --count origin/main)
+    if test -n "$tag"
+        set commits (git -C ~/git/$r rev-list --count "$tag..origin/main")
+    else
+        set tag '(none)'
+    end
+    echo "$r: tag $tag, $commits commits since; code: $code"
 end
+set r filebrowser
+set tag (git -C ~/git/$r tag --list 'android-v*' --sort=-v:refname | head -1)
+set code (git -C ~/git/$r grep -hE '^version:' origin/master -- filebrowser-android/pubspec.yaml)
+set commits (git -C ~/git/$r rev-list --count origin/master)
+if test -n "$tag"
+    set commits (git -C ~/git/$r rev-list --count "$tag..origin/master")
+else
+    set tag '(none)'
+end
+echo "$r: tag $tag, $commits commits since; code: $code"
 ```
 
 Read the result like this:
@@ -64,16 +83,19 @@ Read the result like this:
 - **Code version equals the newest tag**: nothing to tag, even if there are
   commits since the tag. Those are unreleased work; releasing them needs a
   version bump first, which is Paul's call, not a missing tag.
-- **Code version is higher than the newest tag**: a tag is missing (step 2).
+- **There is no tag, or the code version is higher than the newest tag**: a
+  tag is missing (step 2).
 - **Code version is lower than the newest tag**: something is wrong; stop and
   ask.
 
 ## 2. Tag what is missing
 
-Tag the commit on `origin/main` that carries the bumped version (normally its
-head; check with `git log -3 origin/main -- <version file>` that nothing
+Tag the commit on the release branch that carries the bumped version (normally
+its head; check with `git log -3 <branch> -- <version file>` that nothing
 unrelated was pushed after the bump that should not ship). The existing tags
-are lightweight `vX.Y.Z` tags, so keep to that:
+are lightweight `vX.Y.Z` tags, so keep to that. File Browser is the exception:
+use `android-vX.Y.Z`, its `master` branch, and its `android-release.yml`
+workflow because the server owns the plain `vX.Y.Z` tags.
 
 ```fish
 git -C ~/git/<repo> tag vX.Y.Z <sha>
