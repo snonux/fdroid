@@ -203,7 +203,8 @@ Changelog: https://github.com/snonux/<repo>/releases
 AutoName: <App name>
 ```
 
-Also add the app to the list under "Apps" in the README, which must name
+Also add the app to the list under "Apps" in the README, with a few
+screenshots copied into `screenshots/<repo>/`. That list must name
 every app in `apps.yml` (the check is in
 [release-check.md](release-check.md), step 4), and to the repo loops and the
 version table in that file.
