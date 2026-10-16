@@ -175,6 +175,8 @@ for r in $wanted; contains $r $listed; or echo "missing in README: $r"; end
 for r in $listed; contains $r $wanted; or echo "in README but not in apps.yml: $r"; end
 ```
 
-Add a missing app as `- [<App name>](https://github.com/snonux/<repo>)`,
-using the `AutoName` from its `fdroid/metadata/<applicationId>.yml`, and
-remove an entry whose app is gone from `apps.yml`.
+Add a missing app as a `### [<App name>](https://github.com/snonux/<repo>)`
+section like the others (its fastlane short description and two or three
+screenshots copied into `screenshots/<repo>/`), using the `AutoName` from its
+`fdroid/metadata/<applicationId>.yml`, and remove the section and screenshots
+of an app that is gone from `apps.yml`.

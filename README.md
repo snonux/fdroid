@@ -24,18 +24,98 @@ when a new version is released.
 
 ## Apps
 
-- [Quicklog](https://github.com/snonux/quicklog)
-- [TurboNotes](https://github.com/snonux/turbonotes)
-- [RESTForge](https://github.com/snonux/restforge)
-- [ComicRedr](https://github.com/snonux/comicredr)
-- [Player](https://github.com/snonux/player)
-- [TurboLaunch](https://github.com/snonux/turbolaunch)
-- [TurboMon](https://github.com/snonux/turbomon)
-- [Gunrunners](https://github.com/snonux/gunrunners)
-- [File Browser](https://github.com/snonux/filebrowser) (in `filebrowser-android/`)
+### [Quicklog](https://github.com/snonux/quicklog)
+
+Timestamped Markdown notes locally, or optional user-configured S3.
+
+<p>
+  <img src="screenshots/quicklog/1.png" width="180" alt="Quicklog screenshot 1">
+  <img src="screenshots/quicklog/2.png" width="180" alt="Quicklog screenshot 2">
+  <img src="screenshots/quicklog/3.png" width="180" alt="Quicklog screenshot 3">
+</p>
+
+### [TurboNotes](https://github.com/snonux/turbonotes)
+
+Edit a folder of markdown notes: file tree, fuzzy finder, raw and WYSIWYG editor.
+
+<p>
+  <img src="screenshots/turbonotes/1.png" width="180" alt="TurboNotes screenshot 1">
+  <img src="screenshots/turbonotes/2.png" width="180" alt="TurboNotes screenshot 2">
+  <img src="screenshots/turbonotes/3.png" width="180" alt="TurboNotes screenshot 3">
+</p>
+
+### [RESTForge](https://github.com/snonux/restforge)
+
+Generic Siren hypermedia browser: follow links and run actions of any REST API.
+
+<p>
+  <img src="screenshots/restforge/1.png" width="180" alt="RESTForge screenshot 1">
+  <img src="screenshots/restforge/2.png" width="180" alt="RESTForge screenshot 2">
+  <img src="screenshots/restforge/3.png" width="180" alt="RESTForge screenshot 3">
+</p>
+
+### [ComicRedr](https://github.com/snonux/comicredr)
+
+Comic reader with a guided view that glides from panel to panel.
+
+<p>
+  <img src="screenshots/comicredr/1.jpg" width="260" alt="ComicRedr screenshot 1">
+  <img src="screenshots/comicredr/2.jpg" width="260" alt="ComicRedr screenshot 2">
+  <img src="screenshots/comicredr/3.jpg" width="260" alt="ComicRedr screenshot 3">
+</p>
+
+### [Player](https://github.com/snonux/player)
+
+Play music and videos from your own Player server.
+
+<p>
+  <img src="screenshots/player/1.png" width="180" alt="Player screenshot 1">
+  <img src="screenshots/player/2.png" width="180" alt="Player screenshot 2">
+</p>
+
+### [TurboLaunch](https://github.com/snonux/turbolaunch)
+
+Search-first home screen: type a few letters, launch the app.
+
+<p>
+  <img src="screenshots/turbolaunch/1.png" width="180" alt="TurboLaunch screenshot 1">
+  <img src="screenshots/turbolaunch/2.png" width="180" alt="TurboLaunch screenshot 2">
+  <img src="screenshots/turbolaunch/3.png" width="180" alt="TurboLaunch screenshot 3">
+</p>
+
+### [TurboMon](https://github.com/snonux/turbomon)
+
+System monitor: CPU, RAM, GPU, battery, Wi-Fi channels, Bluetooth, LLM snapshots.
+
+<p>
+  <img src="screenshots/turbomon/1.png" width="180" alt="TurboMon screenshot 1">
+  <img src="screenshots/turbomon/2.png" width="180" alt="TurboMon screenshot 2">
+  <img src="screenshots/turbomon/3.png" width="180" alt="TurboMon screenshot 3">
+</p>
+
+### [Gunrunners](https://github.com/snonux/gunrunners)
+
+A jump-n-shoot platformer that plays like Duke Nukem II, in smooth neon HD.
+
+<p>
+  <img src="screenshots/gunrunners/1.jpg" width="260" alt="Gunrunners screenshot 1">
+  <img src="screenshots/gunrunners/2.jpg" width="260" alt="Gunrunners screenshot 2">
+  <img src="screenshots/gunrunners/3.jpg" width="260" alt="Gunrunners screenshot 3">
+</p>
+
+### [File Browser](https://github.com/snonux/filebrowser)
+
+Browse, upload and share files on your own File Browser server. (in `filebrowser-android/`)
+
+<p>
+  <img src="screenshots/filebrowser/1.png" width="180" alt="File Browser screenshot 1">
+  <img src="screenshots/filebrowser/2.png" width="180" alt="File Browser screenshot 2">
+  <img src="screenshots/filebrowser/3.png" width="180" alt="File Browser screenshot 3">
+</p>
 
 These are all the apps in the repository; [`apps.yml`](apps.yml) is the list
-the publish workflow reads.
+the publish workflow reads. The screenshots in [`screenshots/`](screenshots)
+are copied from each app's own repository.
 
 ## How it works
 
@@ -67,7 +147,7 @@ For a Flutter app, follow
    workflow is in [docs/templates/release.yml](docs/templates/release.yml)).
 2. Add the app to [`apps.yml`](apps.yml).
 3. Add `fdroid/metadata/<applicationId>.yml` with licence and links.
-4. Add it to the list above.
+4. Add it to the list above, with a few screenshots under `screenshots/<app>/`.
 
 ## Maintenance
 
