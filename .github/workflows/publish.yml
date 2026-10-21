@@ -76,7 +76,7 @@ jobs:
           cp site/index.html _site/index.html
           rm -f fdroid/keystore.p12
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: _site
 
