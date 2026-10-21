@@ -1,0 +1,9 @@
+# Keep the GitHub Actions in .github/workflows current: Dependabot opens a
+# weekly PR bumping each action ref (and the trailing "# vX.Y.Z" comment of any
+# action pinned to a commit SHA).
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
