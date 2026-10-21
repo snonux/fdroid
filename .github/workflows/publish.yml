@@ -39,7 +39,7 @@ jobs:
       # Keeps downloaded APKs and fdroidserver's apkcache (which remembers when
       # each version was first added) between runs.
       - name: Restore APK cache
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             fdroid/repo/*.apk
